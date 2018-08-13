@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.GoodsinfoDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Goodsinfo">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_subtitle" jdbcType="VARCHAR" property="goodsSubtitle" />
+    <result column="gc_id" jdbcType="INTEGER" property="gcId" />
+    <result column="gc_name" jdbcType="VARCHAR" property="gcName" />
+    <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+    <result column="goods_sell_price" jdbcType="DOUBLE" property="goodsSellPrice" />
+    <result column="goods_image" jdbcType="VARCHAR" property="goodsImage" />
+    <result column="goods_click" jdbcType="INTEGER" property="goodsClick" />
+    <result column="goods_state" jdbcType="INTEGER" property="goodsState" />
+    <result column="goods_commend" jdbcType="INTEGER" property="goodsCommend" />
+    <result column="goods_close_reason" jdbcType="VARCHAR" property="goodsCloseReason" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="thumbs_up_num" jdbcType="BIGINT" property="thumbsUpNum" />
+    <result column="salenum_num" jdbcType="INTEGER" property="salenumNum" />
+    <result column="goods_collect_num" jdbcType="INTEGER" property="goodsCollectNum" />
+    <result column="is_del" jdbcType="INTEGER" property="isDel" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, goods_subtitle, gc_id, gc_name, goods_price, goods_sell_price, 
+    goods_image, goods_click, goods_state, goods_commend, goods_close_reason, comment_num, 
+    thumbs_up_num, salenum_num, goods_collect_num, is_del, member_id, stock, update_time, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goodsinfo
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Goodsinfo">
+    insert into goodsinfo (goods_id, goods_name, goods_subtitle, 
+      gc_id, gc_name, goods_price, 
+      goods_sell_price, goods_image, goods_click, 
+      goods_state, goods_commend, goods_close_reason, 
+      comment_num, thumbs_up_num, salenum_num, 
+      goods_collect_num, is_del, member_id, 
+      stock, update_time, create_time
+      )
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsSubtitle,jdbcType=VARCHAR}, 
+      #{gcId,jdbcType=INTEGER}, #{gcName,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DOUBLE}, 
+      #{goodsSellPrice,jdbcType=DOUBLE}, #{goodsImage,jdbcType=VARCHAR}, #{goodsClick,jdbcType=INTEGER}, 
+      #{goodsState,jdbcType=INTEGER}, #{goodsCommend,jdbcType=INTEGER}, #{goodsCloseReason,jdbcType=VARCHAR}, 
+      #{commentNum,jdbcType=INTEGER}, #{thumbsUpNum,jdbcType=BIGINT}, #{salenumNum,jdbcType=INTEGER}, 
+      #{goodsCollectNum,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, 
+      #{stock,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Goodsinfo">
+    insert into goodsinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsSubtitle != null">
+        goods_subtitle,
+      </if>
+      <if test="gcId != null">
+        gc_id,
+      </if>
+      <if test="gcName != null">
+        gc_name,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsSellPrice != null">
+        goods_sell_price,
+      </if>
+      <if test="goodsImage != null">
+        goods_image,
+      </if>
+      <if test="goodsClick != null">
+        goods_click,
+      </if>
+      <if test="goodsState != null">
+        goods_state,
+      </if>
+      <if test="goodsCommend != null">
+        goods_commend,
+      </if>
+      <if test="goodsCloseReason != null">
+        goods_close_reason,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="thumbsUpNum != null">
+        thumbs_up_num,
+      </if>
+      <if test="salenumNum != null">
+        salenum_num,
+      </if>
+      <if test="goodsCollectNum != null">
+        goods_collect_num,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSubtitle != null">
+        #{goodsSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gcId != null">
+        #{gcId,jdbcType=INTEGER},
+      </if>
+      <if test="gcName != null">
+        #{gcName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsSellPrice != null">
+        #{goodsSellPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsImage != null">
+        #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsClick != null">
+        #{goodsClick,jdbcType=INTEGER},
+      </if>
+      <if test="goodsState != null">
+        #{goodsState,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCommend != null">
+        #{goodsCommend,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCloseReason != null">
+        #{goodsCloseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="thumbsUpNum != null">
+        #{thumbsUpNum,jdbcType=BIGINT},
+      </if>
+      <if test="salenumNum != null">
+        #{salenumNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCollectNum != null">
+        #{goodsCollectNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Goodsinfo">
+    update goodsinfo
+    <set>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSubtitle != null">
+        goods_subtitle = #{goodsSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gcId != null">
+        gc_id = #{gcId,jdbcType=INTEGER},
+      </if>
+      <if test="gcName != null">
+        gc_name = #{gcName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsSellPrice != null">
+        goods_sell_price = #{goodsSellPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsImage != null">
+        goods_image = #{goodsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsClick != null">
+        goods_click = #{goodsClick,jdbcType=INTEGER},
+      </if>
+      <if test="goodsState != null">
+        goods_state = #{goodsState,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCommend != null">
+        goods_commend = #{goodsCommend,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCloseReason != null">
+        goods_close_reason = #{goodsCloseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="thumbsUpNum != null">
+        thumbs_up_num = #{thumbsUpNum,jdbcType=BIGINT},
+      </if>
+      <if test="salenumNum != null">
+        salenum_num = #{salenumNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCollectNum != null">
+        goods_collect_num = #{goodsCollectNum,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Goodsinfo">
+    update goodsinfo
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_subtitle = #{goodsSubtitle,jdbcType=VARCHAR},
+      gc_id = #{gcId,jdbcType=INTEGER},
+      gc_name = #{gcName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_sell_price = #{goodsSellPrice,jdbcType=DOUBLE},
+      goods_image = #{goodsImage,jdbcType=VARCHAR},
+      goods_click = #{goodsClick,jdbcType=INTEGER},
+      goods_state = #{goodsState,jdbcType=INTEGER},
+      goods_commend = #{goodsCommend,jdbcType=INTEGER},
+      goods_close_reason = #{goodsCloseReason,jdbcType=VARCHAR},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      thumbs_up_num = #{thumbsUpNum,jdbcType=BIGINT},
+      salenum_num = #{salenumNum,jdbcType=INTEGER},
+      goods_collect_num = #{goodsCollectNum,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      stock = #{stock,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT * FROM goodsinfo
+  </select>
+
+  <select id="findAllGoodsByPropery" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT * FROM goodsinfo
+    <where>
+      <if test="goods.gcId!=null">
+        gc_id=#{goods.gcId}
+      </if>
+      <if test="goods.goodsName!=null">
+        goods_Name like cancat('%',goods.goodsName,'%')
+      </if>
+    </where>
+  </select>
+</mapper>

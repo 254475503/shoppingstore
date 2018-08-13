@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.CollectioninfoDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Collectioninfo">
+    <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="memberid" jdbcType="INTEGER" property="memberid" />
+    <result column="goodsid" jdbcType="INTEGER" property="goodsid" />
+    <result column="c_time" jdbcType="TIMESTAMP" property="cTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cid, memberid, goodsid, c_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from collectioninfo
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from collectioninfo
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Collectioninfo">
+    insert into collectioninfo (cid, memberid, goodsid, 
+      c_time)
+    values (#{cid,jdbcType=INTEGER}, #{memberid,jdbcType=INTEGER}, #{goodsid,jdbcType=INTEGER}, 
+      #{cTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Collectioninfo">
+    insert into collectioninfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="memberid != null">
+        memberid,
+      </if>
+      <if test="goodsid != null">
+        goodsid,
+      </if>
+      <if test="cTime != null">
+        c_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="memberid != null">
+        #{memberid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null">
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Collectioninfo">
+    update collectioninfo
+    <set>
+      <if test="memberid != null">
+        memberid = #{memberid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null">
+        goodsid = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null">
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Collectioninfo">
+    update collectioninfo
+    set memberid = #{memberid,jdbcType=INTEGER},
+      goodsid = #{goodsid,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

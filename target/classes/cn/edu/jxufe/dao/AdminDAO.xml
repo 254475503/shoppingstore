@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.AdminDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Admin">
+    <id column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
+    <result column="admin_login_num" jdbcType="INTEGER" property="adminLoginNum" />
+    <result column="admin_is_super" jdbcType="INTEGER" property="adminIsSuper" />
+    <result column="is_disable" jdbcType="INTEGER" property="isDisable" />
+    <result column="admin_login_time" jdbcType="TIMESTAMP" property="adminLoginTime" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    admin_id, admin_name, admin_password, admin_login_num, admin_is_super, is_disable, 
+    admin_login_time, created_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Admin">
+    insert into admin (admin_id, admin_name, admin_password, 
+      admin_login_num, admin_is_super, is_disable, 
+      admin_login_time, created_time, updated_time
+      )
+    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, 
+      #{adminLoginNum,jdbcType=INTEGER}, #{adminIsSuper,jdbcType=INTEGER}, #{isDisable,jdbcType=INTEGER}, 
+      #{adminLoginTime,jdbcType=TIMESTAMP}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Admin">
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPassword != null">
+        admin_password,
+      </if>
+      <if test="adminLoginNum != null">
+        admin_login_num,
+      </if>
+      <if test="adminIsSuper != null">
+        admin_is_super,
+      </if>
+      <if test="isDisable != null">
+        is_disable,
+      </if>
+      <if test="adminLoginTime != null">
+        admin_login_time,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null">
+        #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLoginNum != null">
+        #{adminLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="adminIsSuper != null">
+        #{adminIsSuper,jdbcType=INTEGER},
+      </if>
+      <if test="isDisable != null">
+        #{isDisable,jdbcType=INTEGER},
+      </if>
+      <if test="adminLoginTime != null">
+        #{adminLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Admin">
+    update admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null">
+        admin_password = #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adminLoginNum != null">
+        admin_login_num = #{adminLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="adminIsSuper != null">
+        admin_is_super = #{adminIsSuper,jdbcType=INTEGER},
+      </if>
+      <if test="isDisable != null">
+        is_disable = #{isDisable,jdbcType=INTEGER},
+      </if>
+      <if test="adminLoginTime != null">
+        admin_login_time = #{adminLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Admin">
+    update admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_password = #{adminPassword,jdbcType=VARCHAR},
+      admin_login_num = #{adminLoginNum,jdbcType=INTEGER},
+      admin_is_super = #{adminIsSuper,jdbcType=INTEGER},
+      is_disable = #{isDisable,jdbcType=INTEGER},
+      admin_login_time = #{adminLoginTime,jdbcType=TIMESTAMP},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+</mapper>

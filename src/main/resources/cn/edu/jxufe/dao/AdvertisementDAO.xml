@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.AdvertisementDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Advertisement">
+    <id column="adv_id" jdbcType="INTEGER" property="advId" />
+    <result column="adv_title" jdbcType="VARCHAR" property="advTitle" />
+    <result column="adv_pic_url" jdbcType="VARCHAR" property="advPicUrl" />
+    <result column="adv_offline" jdbcType="SMALLINT" property="advOffline" />
+    <result column="adv_order" jdbcType="INTEGER" property="advOrder" />
+    <result column="adv_link_url" jdbcType="VARCHAR" property="advLinkUrl" />
+    <result column="adv_cratetime" jdbcType="TIMESTAMP" property="advCratetime" />
+    <result column="adv_updatetime" jdbcType="TIMESTAMP" property="advUpdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    adv_id, adv_title, adv_pic_url, adv_offline, adv_order, adv_link_url, adv_cratetime, 
+    adv_updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from advertisement
+    where adv_id = #{advId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from advertisement
+    where adv_id = #{advId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Advertisement">
+    insert into advertisement (adv_id, adv_title, adv_pic_url, 
+      adv_offline, adv_order, adv_link_url, 
+      adv_cratetime, adv_updatetime)
+    values (#{advId,jdbcType=INTEGER}, #{advTitle,jdbcType=VARCHAR}, #{advPicUrl,jdbcType=VARCHAR}, 
+      #{advOffline,jdbcType=SMALLINT}, #{advOrder,jdbcType=INTEGER}, #{advLinkUrl,jdbcType=VARCHAR}, 
+      #{advCratetime,jdbcType=TIMESTAMP}, #{advUpdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Advertisement">
+    insert into advertisement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="advId != null">
+        adv_id,
+      </if>
+      <if test="advTitle != null">
+        adv_title,
+      </if>
+      <if test="advPicUrl != null">
+        adv_pic_url,
+      </if>
+      <if test="advOffline != null">
+        adv_offline,
+      </if>
+      <if test="advOrder != null">
+        adv_order,
+      </if>
+      <if test="advLinkUrl != null">
+        adv_link_url,
+      </if>
+      <if test="advCratetime != null">
+        adv_cratetime,
+      </if>
+      <if test="advUpdatetime != null">
+        adv_updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="advId != null">
+        #{advId,jdbcType=INTEGER},
+      </if>
+      <if test="advTitle != null">
+        #{advTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="advPicUrl != null">
+        #{advPicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="advOffline != null">
+        #{advOffline,jdbcType=SMALLINT},
+      </if>
+      <if test="advOrder != null">
+        #{advOrder,jdbcType=INTEGER},
+      </if>
+      <if test="advLinkUrl != null">
+        #{advLinkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="advCratetime != null">
+        #{advCratetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advUpdatetime != null">
+        #{advUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Advertisement">
+    update advertisement
+    <set>
+      <if test="advTitle != null">
+        adv_title = #{advTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="advPicUrl != null">
+        adv_pic_url = #{advPicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="advOffline != null">
+        adv_offline = #{advOffline,jdbcType=SMALLINT},
+      </if>
+      <if test="advOrder != null">
+        adv_order = #{advOrder,jdbcType=INTEGER},
+      </if>
+      <if test="advLinkUrl != null">
+        adv_link_url = #{advLinkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="advCratetime != null">
+        adv_cratetime = #{advCratetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="advUpdatetime != null">
+        adv_updatetime = #{advUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where adv_id = #{advId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Advertisement">
+    update advertisement
+    set adv_title = #{advTitle,jdbcType=VARCHAR},
+      adv_pic_url = #{advPicUrl,jdbcType=VARCHAR},
+      adv_offline = #{advOffline,jdbcType=SMALLINT},
+      adv_order = #{advOrder,jdbcType=INTEGER},
+      adv_link_url = #{advLinkUrl,jdbcType=VARCHAR},
+      adv_cratetime = #{advCratetime,jdbcType=TIMESTAMP},
+      adv_updatetime = #{advUpdatetime,jdbcType=TIMESTAMP}
+    where adv_id = #{advId,jdbcType=INTEGER}
+  </update>
+  <select id="findOnLineList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT * from advertisement
+    <where>
+      <if test="map.advoffline!=null">
+        adv_offline=${map.advoffline}
+      </if>
+    </where>
+    ORDER BY  adv_order
+  </select>
+</mapper>

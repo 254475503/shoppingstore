@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.AreainfoCopyDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.AreainfoCopy">
+    <id column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="area_parent_id" jdbcType="INTEGER" property="areaParentId" />
+    <result column="area_sort" jdbcType="TINYINT" property="areaSort" />
+    <result column="area_deep" jdbcType="BIT" property="areaDeep" />
+    <result column="GROUPID" jdbcType="VARCHAR" property="groupid" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="isHot" jdbcType="INTEGER" property="ishot" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    area_id, area_name, area_parent_id, area_sort, area_deep, GROUPID, create_time, update_time, 
+    isHot
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from areainfo_copy
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from areainfo_copy
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.AreainfoCopy">
+    insert into areainfo_copy (area_id, area_name, area_parent_id, 
+      area_sort, area_deep, GROUPID, 
+      create_time, update_time, isHot
+      )
+    values (#{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{areaParentId,jdbcType=INTEGER}, 
+      #{areaSort,jdbcType=TINYINT}, #{areaDeep,jdbcType=BIT}, #{groupid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{ishot,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.AreainfoCopy">
+    insert into areainfo_copy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="areaParentId != null">
+        area_parent_id,
+      </if>
+      <if test="areaSort != null">
+        area_sort,
+      </if>
+      <if test="areaDeep != null">
+        area_deep,
+      </if>
+      <if test="groupid != null">
+        GROUPID,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="ishot != null">
+        isHot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentId != null">
+        #{areaParentId,jdbcType=INTEGER},
+      </if>
+      <if test="areaSort != null">
+        #{areaSort,jdbcType=TINYINT},
+      </if>
+      <if test="areaDeep != null">
+        #{areaDeep,jdbcType=BIT},
+      </if>
+      <if test="groupid != null">
+        #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="ishot != null">
+        #{ishot,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.AreainfoCopy">
+    update areainfo_copy
+    <set>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentId != null">
+        area_parent_id = #{areaParentId,jdbcType=INTEGER},
+      </if>
+      <if test="areaSort != null">
+        area_sort = #{areaSort,jdbcType=TINYINT},
+      </if>
+      <if test="areaDeep != null">
+        area_deep = #{areaDeep,jdbcType=BIT},
+      </if>
+      <if test="groupid != null">
+        GROUPID = #{groupid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="ishot != null">
+        isHot = #{ishot,jdbcType=INTEGER},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.AreainfoCopy">
+    update areainfo_copy
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_parent_id = #{areaParentId,jdbcType=INTEGER},
+      area_sort = #{areaSort,jdbcType=TINYINT},
+      area_deep = #{areaDeep,jdbcType=BIT},
+      GROUPID = #{groupid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      isHot = #{ishot,jdbcType=INTEGER}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+</mapper>

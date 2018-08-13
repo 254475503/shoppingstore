@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.GoodsCommentDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.GoodsComment">
+    <id column="scomm_id" jdbcType="INTEGER" property="scommId" />
+    <result column="goodis_id" jdbcType="INTEGER" property="goodisId" />
+    <result column="scomm_content" jdbcType="VARCHAR" property="scommContent" />
+    <result column="scomm_memberid" jdbcType="INTEGER" property="scommMemberid" />
+    <result column="scomm_membername" jdbcType="VARCHAR" property="scommMembername" />
+    <result column="scomm_memberavatar" jdbcType="VARCHAR" property="scommMemberavatar" />
+    <result column="scomm_time" jdbcType="VARCHAR" property="scommTime" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    scomm_id, goodis_id, scomm_content, scomm_memberid, scomm_membername, scomm_memberavatar, 
+    scomm_time, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_comment
+    where scomm_id = #{scommId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_comment
+    where scomm_id = #{scommId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.GoodsComment">
+    insert into goods_comment (scomm_id, goodis_id, scomm_content, 
+      scomm_memberid, scomm_membername, scomm_memberavatar, 
+      scomm_time, create_time, update_time
+      )
+    values (#{scommId,jdbcType=INTEGER}, #{goodisId,jdbcType=INTEGER}, #{scommContent,jdbcType=VARCHAR},
+      #{scommMemberid,jdbcType=INTEGER}, #{scommMembername,jdbcType=VARCHAR}, #{scommMemberavatar,jdbcType=VARCHAR}, 
+      #{scommTime,jdbcType=VARCHAR},#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.GoodsComment">
+    insert into goods_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scommId != null">
+        scomm_id,
+      </if>
+      <if test="goodisId != null">
+        goodis_id,
+      </if>
+      <if test="scommContent != null">
+        scomm_content,
+      </if>
+      <if test="scommMemberid != null">
+        scomm_memberid,
+      </if>
+      <if test="scommMembername != null">
+        scomm_membername,
+      </if>
+      <if test="scommMemberavatar != null">
+        scomm_memberavatar,
+      </if>
+      <if test="scommTime != null">
+        scomm_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scommId != null">
+        #{scommId,jdbcType=INTEGER},
+      </if>
+      <if test="goodisId != null">
+        #{goodisId,jdbcType=INTEGER},
+      </if>
+      <if test="scommContent != null">
+        #{scommContent,jdbcType=VARCHAR},
+      </if>
+      <if test="scommMemberid != null">
+        #{scommMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="scommMembername != null">
+        #{scommMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="scommMemberavatar != null">
+        #{scommMemberavatar,jdbcType=VARCHAR},
+      </if>
+      <if test="scommTime != null">
+        #{scommTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.GoodsComment">
+    update goods_comment
+    <set>
+      <if test="goodisId != null">
+        goodis_id = #{goodisId,jdbcType=INTEGER},
+      </if>
+      <if test="scommContent != null">
+        scomm_content = #{scommContent,jdbcType=VARCHAR},
+      </if>
+      <if test="scommMemberid != null">
+        scomm_memberid = #{scommMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="scommMembername != null">
+        scomm_membername = #{scommMembername,jdbcType=VARCHAR},
+      </if>
+      <if test="scommMemberavatar != null">
+        scomm_memberavatar = #{scommMemberavatar,jdbcType=VARCHAR},
+      </if>
+      <if test="scommTime != null">
+        scomm_time = #{scommTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where scomm_id = #{scommId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.GoodsComment">
+    update goods_comment
+    set goodis_id = #{goodisId,jdbcType=INTEGER},
+      scomm_content = #{scommContent,jdbcType=VARCHAR},
+      scomm_memberid = #{scommMemberid,jdbcType=INTEGER},
+      scomm_membername = #{scommMembername,jdbcType=VARCHAR},
+      scomm_memberavatar = #{scommMemberavatar,jdbcType=VARCHAR},
+      scomm_time = #{scommTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where scomm_id = #{scommId,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT * FROM goods_comment
+  </select>
+
+  <select id="findByGoodsId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT * FROM goods_comment
+    <where>
+      <if test="goodid!=null">
+        goodis_id=#{goodid}
+      </if>
+    </where>
+    ORDER BY scomm_time
+  </select>
+</mapper>

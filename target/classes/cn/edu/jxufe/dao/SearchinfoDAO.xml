@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.SearchinfoDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Searchinfo">
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="search_key" jdbcType="VARCHAR" property="searchKey" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="searchTime" jdbcType="TIMESTAMP" property="searchtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    s_id, search_key, member_id, searchTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from searchinfo
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from searchinfo
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Searchinfo">
+    insert into searchinfo (s_id, search_key, member_id, 
+      searchTime)
+    values (#{sId,jdbcType=INTEGER}, #{searchKey,jdbcType=VARCHAR}, #{memberId,jdbcType=INTEGER}, 
+      #{searchtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Searchinfo">
+    insert into searchinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="searchKey != null">
+        search_key,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="searchtime != null">
+        searchTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="searchKey != null">
+        #{searchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="searchtime != null">
+        #{searchtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Searchinfo">
+    update searchinfo
+    <set>
+      <if test="searchKey != null">
+        search_key = #{searchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="searchtime != null">
+        searchTime = #{searchtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Searchinfo">
+    update searchinfo
+    set search_key = #{searchKey,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=INTEGER},
+      searchTime = #{searchtime,jdbcType=TIMESTAMP}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.ArticleinfoDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Articleinfo">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="article_pic_url" jdbcType="VARCHAR" property="articlePicUrl" />
+    <result column="article_show" jdbcType="BIT" property="articleShow" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="amount_of_reading" jdbcType="BIGINT" property="amountOfReading" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.edu.jxufe.entity.Articleinfo">
+    <result column="article_content" jdbcType="LONGVARCHAR" property="articleContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    article_id, article_pic_url, article_show, article_title, create_time, update_time, 
+    amount_of_reading
+  </sql>
+  <sql id="Blob_Column_List">
+    article_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from articleinfo
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from articleinfo
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Articleinfo">
+    insert into articleinfo (article_id, article_pic_url, article_show, 
+      article_title, create_time, update_time, 
+      amount_of_reading, article_content)
+    values (#{articleId,jdbcType=INTEGER}, #{articlePicUrl,jdbcType=VARCHAR}, #{articleShow,jdbcType=BIT}, 
+      #{articleTitle,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{amountOfReading,jdbcType=BIGINT}, #{articleContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Articleinfo">
+    insert into articleinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="articlePicUrl != null">
+        article_pic_url,
+      </if>
+      <if test="articleShow != null">
+        article_show,
+      </if>
+      <if test="articleTitle != null">
+        article_title,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="amountOfReading != null">
+        amount_of_reading,
+      </if>
+      <if test="articleContent != null">
+        article_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="articlePicUrl != null">
+        #{articlePicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="articleShow != null">
+        #{articleShow,jdbcType=BIT},
+      </if>
+      <if test="articleTitle != null">
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountOfReading != null">
+        #{amountOfReading,jdbcType=BIGINT},
+      </if>
+      <if test="articleContent != null">
+        #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Articleinfo">
+    update articleinfo
+    <set>
+      <if test="articlePicUrl != null">
+        article_pic_url = #{articlePicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="articleShow != null">
+        article_show = #{articleShow,jdbcType=BIT},
+      </if>
+      <if test="articleTitle != null">
+        article_title = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountOfReading != null">
+        amount_of_reading = #{amountOfReading,jdbcType=BIGINT},
+      </if>
+      <if test="articleContent != null">
+        article_content = #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.edu.jxufe.entity.Articleinfo">
+    update articleinfo
+    set article_pic_url = #{articlePicUrl,jdbcType=VARCHAR},
+      article_show = #{articleShow,jdbcType=BIT},
+      article_title = #{articleTitle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      amount_of_reading = #{amountOfReading,jdbcType=BIGINT},
+      article_content = #{articleContent,jdbcType=LONGVARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Articleinfo">
+    update articleinfo
+    set article_pic_url = #{articlePicUrl,jdbcType=VARCHAR},
+      article_show = #{articleShow,jdbcType=BIT},
+      article_title = #{articleTitle,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      amount_of_reading = #{amountOfReading,jdbcType=BIGINT}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+</mapper>

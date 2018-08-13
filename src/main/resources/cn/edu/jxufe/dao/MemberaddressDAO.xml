@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxufe.dao.MemberaddressDAO">
+  <resultMap id="BaseResultMap" type="cn.edu.jxufe.entity.Memberaddress">
+    <id column="addressid" jdbcType="INTEGER" property="addressid" />
+    <result column="provinceName" jdbcType="VARCHAR" property="provincename" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
+    <result column="detailaddress" jdbcType="VARCHAR" property="detailaddress" />
+    <result column="memberId" jdbcType="INTEGER" property="memberid" />
+    <result column="isdefault" jdbcType="INTEGER" property="isdefault" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    addressid, provinceName, cityName, areaName, detailaddress, memberId, isdefault
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from memberaddress
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from memberaddress
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.jxufe.entity.Memberaddress">
+    insert into memberaddress (addressid, provinceName, cityName, 
+      areaName, detailaddress, memberId, 
+      isdefault)
+    values (#{addressid,jdbcType=INTEGER}, #{provincename,jdbcType=VARCHAR}, #{cityname,jdbcType=VARCHAR}, 
+      #{areaname,jdbcType=VARCHAR}, #{detailaddress,jdbcType=VARCHAR}, #{memberid,jdbcType=INTEGER}, 
+      #{isdefault,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.jxufe.entity.Memberaddress">
+    insert into memberaddress
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        addressid,
+      </if>
+      <if test="provincename != null">
+        provinceName,
+      </if>
+      <if test="cityname != null">
+        cityName,
+      </if>
+      <if test="areaname != null">
+        areaName,
+      </if>
+      <if test="detailaddress != null">
+        detailaddress,
+      </if>
+      <if test="memberid != null">
+        memberId,
+      </if>
+      <if test="isdefault != null">
+        isdefault,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="provincename != null">
+        #{provincename,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null">
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null">
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddress != null">
+        #{detailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="memberid != null">
+        #{memberid,jdbcType=INTEGER},
+      </if>
+      <if test="isdefault != null">
+        #{isdefault,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.jxufe.entity.Memberaddress">
+    update memberaddress
+    <set>
+      <if test="provincename != null">
+        provinceName = #{provincename,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null">
+        cityName = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null">
+        areaName = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddress != null">
+        detailaddress = #{detailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="memberid != null">
+        memberId = #{memberid,jdbcType=INTEGER},
+      </if>
+      <if test="isdefault != null">
+        isdefault = #{isdefault,jdbcType=INTEGER},
+      </if>
+    </set>
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.jxufe.entity.Memberaddress">
+    update memberaddress
+    set provinceName = #{provincename,jdbcType=VARCHAR},
+      cityName = #{cityname,jdbcType=VARCHAR},
+      areaName = #{areaname,jdbcType=VARCHAR},
+      detailaddress = #{detailaddress,jdbcType=VARCHAR},
+      memberId = #{memberid,jdbcType=INTEGER},
+      isdefault = #{isdefault,jdbcType=INTEGER}
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </update>
+</mapper>
