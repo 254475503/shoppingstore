@@ -1,4 +1,4 @@
-package cn.edu.jxufe.controller;
+﻿package cn.edu.jxufe.controller;
 
 import cn.edu.jxufe.service.AdvertisementService;
 import cn.edu.jxufe.service.impl.AdvertisementServiceImpl;
@@ -19,4 +19,5 @@ public class AdvertisementController {
     public Object viewAd(){
         return advertisementService.findOnLineList();
     }
+	/*@1111*/
 }
